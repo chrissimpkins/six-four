@@ -9,6 +9,7 @@ A base64 encoder for images that optionally inserts encoded images as a &lt;img&
 git clone https://github.com/chrissimpkins/six-four.git
 ```
 **Method 2**: Download a compressed archive with one of the following links:
+
 [gzipped tar archive](https://github.com/chrissimpkins/six-four/tarball/master)
 
 [zip archive](https://github.com/chrissimpkins/six-four/zipball/master)
@@ -30,7 +31,7 @@ You can use this method to pipe the raw base64 encoded image data to any other a
 sixfour -i 'path/to/image.png' | coolimageapp --process-it
 ```
 
-## base64 Encoding --> &lt;img&gt; Tag in HTML or Markdown file
+### base64 Encoding --> &lt;img&gt; Tag in HTML or Markdown file
 Insert the tag `{{64}}` at the site in your Markdown or HTML file where you want to include the base64 encoded image tag:
 
 ``` html
