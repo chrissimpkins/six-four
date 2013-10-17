@@ -4,7 +4,7 @@ import sys
 import os
 import getopt
 
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 REPLACE_TAG = "{{64}}"
 
 def main(argv):
@@ -41,7 +41,7 @@ def main(argv):
     elif i == 2:
         basesixfour = sixfourit(inpath)
         basesixfour_stripped = basesixfour.rstrip()
-        insertimg(outpath, basesixfour_stripped)
+        insertimg(outpath, basesixfour_stripped, inpath)
 
 
 
@@ -78,13 +78,13 @@ Use the replacement tag {{64}} in your HTML or Markdown file at the location whe
     """
     print(helpstring)
 
-def insertimg(htmlpath, base64string):
+def insertimg(htmlpath, base64string, imgpath):
     htmlstring = ""
     try:
         with open(htmlpath, "r+") as f:
             htmlstring = f.read()
             f.seek(0)
-            the_b64 = makeimgtag(base64string)
+            the_b64 = makeimgtag(base64string, imgpath)
             new_htmlstring = htmlstring.replace(REPLACE_TAG, the_b64)
             f.write(new_htmlstring)
             f.close()
@@ -94,9 +94,11 @@ def insertimg(htmlpath, base64string):
         print(str(e))
         sys.exit(1)
 
-def makeimgtag(base64string):
+def makeimgtag(base64string, imgfile):
     pretag = """<img src="data:image/png;base64, """
-    posttag = """" />"""
+    basefile = os.path.basename(imgfile)
+    basename = os.path.splitext(basefile)[0]
+    posttag = '" ' + "alt='" + basename + "' />"
     the_string = pretag + base64string + posttag
     return the_string
 
