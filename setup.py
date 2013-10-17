@@ -2,7 +2,7 @@
 
 from distutils.core import setup
 setup(name='sixfour',
-      version='1.0.2',
+      version='1.0.3',
       description='base64 Image Encoder',
       author='Christopher Simpkins',
       author_email='chris@zerolabs.net',
