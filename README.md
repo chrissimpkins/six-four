@@ -4,7 +4,7 @@ sixfour
 A base64 encoder for images that optionally inserts encoded images as a &lt;img&gt; element at the site of a {{64}} tag in your HTML or Markdown files
 
 ## Dependencies
-Requires Python v2.7+
+Requires Python v2.7.x or 3.x
 
 ## Obtain the Python Source Code
 **Method 1**: Clone the sixfour repository with the following command:
