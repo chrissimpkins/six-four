@@ -4,7 +4,7 @@ import sys
 import os
 import getopt
 
-VERSION = "1.0.2"
+VERSION = "1.0.3"
 REPLACE_TAG = "{{64}}"
 
 def main(argv):
@@ -37,7 +37,8 @@ def main(argv):
         print("Failed to enter image file path.")
     elif i == 1:
         basesixfour = sixfourit(inpath)
-        print(basesixfour)
+        basesixfour_stripped = basesixfour.rstrip()
+        sys.stdout.write(basesixfour_stripped)
     elif i == 2:
         basesixfour = sixfourit(inpath)
         basesixfour_stripped = basesixfour.rstrip()
