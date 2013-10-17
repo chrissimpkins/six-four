@@ -3,7 +3,10 @@ sixfour
 
 A base64 encoder for images that optionally inserts encoded images as a &lt;img&gt; element at the site of a {{64}} tag in your HTML or Markdown files
 
-## Obtain the Source
+## Dependencies
+Requires Python v2.7+
+
+## Obtain the Python Source Code
 **Method 1**: Clone the sixfour repository with the following command:
 ```
 git clone https://github.com/chrissimpkins/six-four.git
@@ -48,7 +51,7 @@ Insert the tag `{{64}}` at the site in your Markdown or HTML file where you want
 </html>
 ```
 
-Include both the `-i` flag with a image file path and the `-o` flag with a HTML or Markdown file path in your command:
+Include both the `-i` flag with an image file path and the `-o` flag with a HTML or Markdown file path in your command:
 ``` bash
 sixfour -i 'path/to/coolimage.png' -o 'path/to/index.html'
 ```
@@ -124,10 +127,10 @@ The `{{64}}` tag in the HTML above will be replaced with a &lt;img&gt; tag that 
     </body>
 </html>
 ```
-The filename will be used as the `<alt>` attribute in the tag.
+The image filename is used as the `<alt>` attribute in the tag.
 
 ## Help
-In application help documentation is accessed with the following command:
+In application help documentation is accessed with either of the following commands:
 ``` bash
 sixfour -h
 ```
