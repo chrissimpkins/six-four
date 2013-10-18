@@ -3,10 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Six-four by chrissimpkins</title>
+    <title>Six-Four | base64 Image Encoder and Embedder for HTML, Markdown, and CSS</title>
+    <meta itemprop="description" content="A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, or CSS files at the site of a {{64}} tag.">
+    <meta name="description" content="A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, or CSS files at the site of a {{64}} tag.">
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="javascripts/respond.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -15,14 +18,15 @@
     <link rel="stylesheet" href="stylesheets/ie.css">
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
   </head>
   <body>
       <div id="header">
         <nav>
-          <li class="fork"><a href="https://github.com/chrissimpkins/six-four">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/chrissimpkins/six-four/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/chrissimpkins/six-four/tarball/master">TAR</a></li>
+          <li class="fork"><a href="https://github.com/chrissimpkins/six-four">View On GitHub <i class="icon-github icon-large"></i></a></li>
+          <li class="downloads"><a href="https://github.com/chrissimpkins/six-four/zipball/master"><i class="icon-download icon-large"></i> ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/chrissimpkins/six-four/tarball/master"><i class="icon-download icon-large"></i> TAR</a></li>
           <li class="title">DOWNLOADS</li>
         </nav>
       </div><!-- end header -->
@@ -31,48 +35,222 @@
 
       <section>
         <div id="title">
-          <h1>Six-four</h1>
-          <p>A base64 encoder for images that optionally will include the encoded image as a &lt;img&gt; element in your HTML or Markdown files</p>
+          <h1>Six-Four</h1>
+          <p>A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, or CSS files at the site of a {{64}} tag.</p>
           <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/chrissimpkins">chrissimpkins</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+          <span class="credits left">Developed by Chris Simpkins <a href="https://github.com/chrissimpkins"><i class="icon-github icon-large"></i></a> <a href="http://twitter.com/csimpkins" class="twitter-blue"><i class="icon-twitter icon-large"></i></a></span>
+          <span class="credits right">Proudly hosted by <a href="http://www.github.com"><i class="icon-github icon-large"></i></a></span>
         </div>
+        <h2>Contents</h2>
+        <ul>
+          <li><a href="#doc-description">Description</a></li>
+          <li><a href="#doc-dependency">Dependencies</a></li>
+          <li><a href="#doc-source">Obtain the Source Code</a></li>
+          <li><a href="#doc-install">Install</a></li>
+          <li><a href="#doc-usage">Usage</a></li>
+          <li><a href="#doc-help">Help</a></li>
+          <li><a href="#doc-license">License</a></li>
+        </ul>
 
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h2 id="doc-description">Description</h2>
+          <p>Six-Four is a base64 encoder for images that allows you to embed an appropriately formatted, encoded image in HTML, Markdown, or CSS files, or to stream the raw image data through the standard output stream.</p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+        <h2 id="doc-dependency">Dependencies</h2>
+          <p>Six-Four is <a href="http://www.python.org/">Python powered</a>.  You must have Python 2 or 3 installed on your system in order to use it.</p>
+          <p>It has been tested in Python versions 2.7.5 and 3.3.2</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+        <h2 id="doc-source">Obtain the Source Code</h2>
+          <h3><i class="icon-caret-right"></i> Method 1: Clone the GitHub repository with Git</h3>
+          <pre><code>git clone https://github.com/chrissimpkins/six-four.git</code></pre>
+          <h3><i class="icon-caret-right"></i> Method 2: Download a compressed archive</h3>
+          <p>Use one of the buttons in the top right corner of the screen to download a compressed archive of the source files.</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+        <h2 id="doc-install">Install</h2>
+        <p>Navigate to the top level directory in the source distribution and enter the following command:</p>
+        <pre><code>python setup.py install</code></pre>
+        <p>This installs a python script in your PATH so that you can use the application with the command:</p>
+        <pre><code>sixfour</code></pre>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+        <h2 id="doc-usage">Usage</h2>
+        <h3><i class="icon-caret-right"></i> Available Options</h3>
+        <table>
+        <tr>
+          <th>Short Option</th>
+          <th>Long Option</th>
+          <th>Argument</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>-c</td>
+          <td>--css</td>
+          <td>&lt;CSS filepath&gt;</td>
+          <td>Embed encoded data in CSS</td>
+        </tr>
+        <tr>
+          <td>-h</td>
+          <td>--help</td>
+          <td>None</td>
+          <td>Show help documentation</td>
+        </tr>
+        <tr>
+          <td>-i</td>
+          <td>--image</td>
+          <td>&lt;Image filepath&gt;</td>
+          <td>Input image file path</td>
+        </tr>
+        <tr>
+          <td>-o</td>
+          <td>--html</td>
+          <td>&lt;HTML/MD filepath&gt;</td>
+          <td>Embed encoded data in HTML or MD</td>
+        </tr>
+        <tr>
+          <td>-v</td>
+          <td>--version</td>
+          <td>None</td>
+          <td>Display version number</td>
+        </tr>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+        </table>
+        <h3><i class="icon-caret-right"></i> base64 Encode and Pipe Through Standard Output Stream</h3>
+          <pre><code>sixfour -i "path/to/image.png"</code></pre>
+          <p>To pipe the base64 encoded image data through the standard output stream, enter an image file path as the argument to the <code>-i</code> or <code>--image</code> flag.</p>
+          <p>This will print the data to your terminal by default; however, you can use the pipelining capabilities of your OS to stream the data to the standard input of another command.</p>
+          <pre><code>sixfour -i "path/to/image.png" | imageapp --processit</code></pre>
+        <h3><i class="icon-caret-right"></i> base64 Encode and Embed as &lt;img&gt; Tag in HTML or Markdown</h3>
+          <p>Insert the tag <code>{{64}}</code> at the site in your Markdown or HTML file where you want to embed the base64 encoded image tag:</p>
+          <pre><code>&lt;!DOCTYPE html&gt;
+    ...snip...
+    &lt;body&gt;
+        &lt;div class="main-container"&gt;
+            &lt;div class="main wrapper clearfix"&gt;
+            {{64}}
+            &lt;/div&gt;
+        &lt;/div&gt;
+    ...snip...
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          <p>Include both the -i flag with an image file path and the -o flag with a HTML or Markdown file path in your command:</p>
+          <pre><code>sixfour -i 'path/to/coolimage.png' -o 'path/to/index.html'</code></pre>
+          <p>The <code>{{64}}</code> tag in the HTML above will be replaced with a <code>&lt;img&gt;</code> tag like this:</p>
+          <pre><code>
+&lt;!DOCTYPE html&gt;
+    ...snip...
+    &lt;body&gt;
+        &lt;div class="main-container"&gt;
+            &lt;div class="main wrapper clearfix"&gt;
+            &lt;img src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJYAAAAdCAQAAADif11yAAAMs0lEQVR4XuXVeXRUZZ7G8e/73ltb
+            KiQEEnayYwSSEBYBaQF3BxVQoBFBcMGIGEG7e9C2tdumjyAoR3oUURAUQURAwKUH2nYJCOg0QpBF
+            CYuGxUQIS4AklVTVvfc3Wid1kkAPYjMe//Dz/vfc+9aTPOfUKSVDWMkvQf3/OZRV9khpaT6P7YzH
+            0i/hcgrkmLEQG4Cu9vTT1zgA6OMJt/H36G39C5kKVhK1Aqd9Uko2IeyUzpk9cdY6mf1S0nEA8F0/
+            rEevXHLIJZfs+Lz4+tsmv0T6+JXS76FH+gePDfQ0WzGlNOnYjXZbplC7xnPX7CN3CFGYniGsJEyE
+            5meQ1rTPXb1789MjJeGysT16cRbtdnkcj+12ubye+OaJSS48PgxU/n2NpgJapOODn3Gstvnl8yvm
+            TI7hp6aSxx2eV/nCb32cQQShjkuZCpSCyU1OjRcaUwr1s45lZQtGwlEfP7lQjqATar38MIXsTw+n
+            cAYN/JxjuQJZABUOPzX3901K2edsMsUmAo+pNOegaUj9ofnMzKktUfxoM33T0qcnLzf+VT4lZa1J
+            FKv6eLNt3M17d+dsenK7ye3QREyPfyLt7K/Q5Jh/2WRMT366w5NJKKJY/itvJxt3YpdunEWbXhLF
+            NDRJCa3jFedDE0XfXtmvr9g8b8vCok5L+3YB6HhR5qsZb+b2B0BlDchYmfF8tzYAw42MBzJXdRiN
+            Alju7jppzqcLi17d+od1ebfUT73FlfebOZ8sLFpcNG5d15FoQF08/E9LTvoNqmPmLslckzUGBR37
+            ZCzOnXyi9/Vjst5fsnVJUc6y+T0/bp/3xwX/fH3ruxuyhxLFc568h5d817Rg66Nruw2LNqEvGd2p
+            cEHRgi0Lii5e2elqAFTHW/+y+JTPIOB/cWn6mg63oagnYmY+WP1bia/h9MNWQQAl/DCpO/0v7XA8
+            Q1IlXVIlQzocuDxbuGJShmRI73fEJaz25GzJkEy5dpIgXJ6XGcqQnG3iFZa5c+ZmSJqkRm5nhrPH
+            CoIwx5U7uz7PsLPvFcTMWZki6ZIeyTvIxevEFKPPG+nSScaGOkj0LxhcNeBYWuStDMkI5PQXBOFZ
+            T84rDZpCnW+P5DpvSmbkM6Pvd7820vR2w6asD8UU6o6OWYO0l7RIkCbtBUkslphxPbxhpPHps1ni
+            o4EmAuPUo3Yzh4sO37IopczBSa7+PTquxECobYFAYXI4UxBO5qCgWR4uwV1CGGaPqcm3iZMRGy7b
+            C44ZnHpzKsAbtwbGO8QyYmO/3QrRoSmjOmA1n5q3HwQPXQrjJ5j3YqFMn1DDP1ytdwx7LeWYoNnq
+            39282/KrlvhDDvgkHw2w8o6aO2ziZeT6X+0DxxV+cngyXJNV/aCDQc7fBy9qVusgvtB4DKykKV0O
+            guCly4fxE6QAi0YOUQJACYc4P5qIl1uGezrEUfCnqWMHPegXGyMXb/p+bQmhlFktYG9bpwk4WLn4
+            oDIeFAl7sTFPjXJQ9Fjz5KBFA9MO20iLigGAefq7HLq//+SgVweml9rYzcpugMLN3Z8zAdeJMXd/
+            NmvHLgAEoPXOF6+bdle/CS4LXPRb9ObouWOz1oCgshe4AdfpkZGmv00Z9PLg1HIbp3XFDaAvd2KE
+            9oVvjXgmv+tcDdDpqRj4cFOX5w3APD5x7GezdhfTkOIMDsh5jiUuTIXNviOEO66VwwbBI1h6vyoD
+            EsqToCLXVgKE2v+xJZxOFxTsgodbVHcUvMQupIL9iV9oHFxpMLV5Vbbgwb+IExxovkMj6FSAfYcF
+            hVW1+iQNaPhnx28Jf/6BKgdN4jqC1Hj2qsg9dxuY2LIq2nTS/XWzLzWCKxUigxC3klMES97UtkA7
+            fzJAyWFQhE+/e4ozeA5yBr2FoKOQ8xhrbJlRrAjw5u24BxwNTWBe6FFCMypjS8F270sG1VVwoQk3
+            q8jENLMdDDuxGE4lqaaAo0sAy6zWKEIKyhJJACXqayBsVmkg1KBS8CoasUMAhiW1AKctQEUiTE9T
+            PwRbqHjQtlEChF3VCggAB5eaM/SLh1YABE6KBYY7wU8DQUVjziXPJpTUh4r4kpy/4NginMdYhP3z
+            FHD05ssLUHtW7MvfuQkIW7s0tjK64Q/0CHMl8ViUZoEVKxi1XSsgqAQw9DU9iSUnJSuM4AVqFYBW
+            V3+fZ6d1DAMeUPxfzvnMUlCjUaD1td835ba/yAI8Duw8UTypePzmbwGyL1JuAFtxTu/tfCw/KUCd
+            Fva03320G7Qg5zMW1y3zbgFHlT1xY/1PstOyWGFD+rGOVjvoSXOCeK8P9wglg/ebi78hQhHkzWkj
+            Vk9YsT1LAVrq83eeuHXN/Su3dVaAIVywoFr69IjVE1d80UEBhkMUU1tefd+OmbbivFz6SfgAdexT
+            l2zhPJjUebyqaFLx21YTO2bf3FuOLS0kwtkrWHiuLkk+3dRNx5p4j6WtfiUvhFuBr3RQiDo2q/2u
+            vg4aE42zmzoOq2Ncl0Xz0G6EC6IIN2hShOua9nvvvPfoA4HUEB7OT2uxwtSxnHIHwBaM8xoL3l57
+            xUOls20VbrrzpfxrXioBSNpzKFAbE2xT1qaWRKvljCYDjB7H/YfzLDT6C0LUUfQM1m6rDgBStbN8
+            RYM8FNxWVQ1I9a7gMi6YQa/awPZApKlyW+VbABPabJhXNSBMKm35lH9f1SF7s5GnPNYPj4UUzuvf
+            sXSiUJux6b++HNYpBP3Ki44bMVUU4+A9lPZs2HD3OMlubBSt9iBECDHc/uiQuYQBIYwTzX2MfPyW
+            5xvkF0jwyR2P3DQPq75prmvtrJoBDi2/fGpm+b3/0/3fL1l2tN0N7nad26Y+9UJnm7Np6rmw1j2c
+            uAAgMLBgCMA9Fd69itMcQBP+jOO+j91U8xUO2jF3U0dhW+sLqaSWWoLRSZQobKdxfuGs8EeFVDVs
+            eu3KmsEO8TWjxvWct/k9Nxfim+Nfb3t3davXTDjHWKpTQef38oZTO2RizCcgHB2BAYjnkOYI23DR
+            rBhJ3mNUWKxF8FRmfQXgEQWIeBURGTkZOUqDV0SBiKcuz8xOz1UGF8AjoECaKCLScyNNuvZW0ULq
+            7onboTbIhaOsinONNbulPF5zRfx/4nuostc0t+Ogsn8fCzgUGQQow0C+gMdKfV8LRwDKbzwO4K2Q
+            KhCzLA7g+mvVRvm0z83gPyVVgD4cDzDwcjaqT3sPIwqt+ZFckSbHVRppum6A/q7puhHEmj0cFAkB
+            bDAUZ1E/ukmrc45l+7VXCKRvTEf/R8An9U/SShQKjRnO2gfYzk6NBmKLu1cC/LXMuwfCqmYUMTRx
+            xksTw++Ng+nf+oohrGpHEkOsc5/E6RhfPIDtgKCapWbyo8w+5N0LYR0YhY8mjJdYw++JIxgq1ziU
+            p9AKT2KmTT1xBMFI7JDBhaufxF/Ot5oTzSe/Mf6Z+c+eNhTO9mlVANV7VCWAOppSBtitdioAPPuJ
+            wPa9oxCK7xyzaMyiQ4METsZ9DDi+txTCnttGL7594YGhgqpsuhag9mtlKWpi/nv+Vfd36AaA4iyi
+            znpied5VCLvHjl44evE3NwrqhOc9gk6hwmBP22GL819eNSyEIsr5StmKgP+dV64uSO36/zbWXZWe
+            mUpgb/b7DxR3EnSF+2lsgLFl7qMKhW//pOMAvl0KhYGzCQcASZ/nKtJU6Q1DNgyu0RrXjFVfRfJX
+            3Js01XrjTetvDmiN8czKPQB//txdqID9nQ8+xwwU2LZC4VgAji0oIBwCCIcjT7QdBuTiua7tmkpj
+            47CNA2uUxnh6WQn4l6pjCostvT4YedTbBHAMKwwwusi9LtKUfWCWazqK82RTz1FnjQVFc/0Frr2m
+            bWDWuD9qctPWjUQMqgo+xVbZEpyFBeBfyxzZ7ixP/Ad1Xj/W6hbfcuOoC1M8B2IeefApIhZXJI3w
+            LTXKI/lB/2MjphLRKWTcb7yvq12oMnMegnX6VT6TT4LLAN6ucubINvtv32wApHSVfMyO2nkJJQAL
+            y1sP964wjrkwHc9+/0MjZgCs39PsTmOXKWbQtWnoX3stsIqC8w/uARgQ9N1nfGh831Sq5yM0pqjj
+            iLZp4NsjQlTlMYJESYNzU9N7ehVcNSpHTGmUd3Z3djdMUr3CGUdf276gX36fguZn5+O+y+9JFNUw
+            /7M5uNPdfQe1iSbdXTTozPQQfZtfG+18jZsGJo/vP+7Sxk2/js/vMzLvFa9EPqtx09DOd/cd0lo4
+            45hxa6JB3PvS6E6/9uaRaF3739TnSviluvOabYsDSYKxq9WtH22jIdV3/InpdiwS+0Hf4TNPUkcz
+            hF+GIUQNJeKVvVvWb+Xz0JerP9pPY7J+0+c7Pmfrqc1rZlbX3/5fbmn4nw/pQsUAAAAASUVORK5C
+            YII=" alt='coolimage' /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    ...snip...
+    &lt;/body&gt;
+&lt;/html&gt;
+          </code></pre>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+          <p>The alt attribute is filled in with the name of the image file (without the image file type suffix).  This is repeated for every <code>{{64}}</code> tag in the document.</p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+          <h3><i class="icon-caret-right"></i> base64 Encode and Embed in CSS</h3>
+          <p>You can embed the base64 encoded file as a data URI in a CSS file.  To do this, insert the tag {{64}} at the position in your CSS file where the data URI should be located.</p>
+          <pre><code>.base64test {
+    background: #fff {{64}} repeat-x;
+}</code></pre>
+          <p>Then run Six-Four with your image and CSS file path information.  Include the image file path as the argument to the <code>-i</code> or <code>--image</code> flag.  Include the CSS file path as the argument to the <code>-c</code> or <code>--css</code> flag.</p>
+          <pre><code>sixfour -i 'path/to/coolimage.png' -c 'path/to/main.css'</code></pre>
+          <p>And the embedded CSS text will look like this:</p>
+          <pre><code>.base64test {
+    background: #fff url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAIAAABLixI0AAAAOElEQVQ4y2N4Qz3AAMSfP73DJCEIPxuNZBh112Bz14cPEISPjdVdg9Ws0fAaDa8hHF6j5dcQcxcA3DHODs/IAR8AAAAASUVORK5CYII=) repeat-x;
+}</code></pre>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+        <h2 id="doc-help">Help</h2>
+        <p>Help is available in the application with either of the following commands:</p>
+        <pre><code>sixfour -h</code></pre>
+        <p>OR</p>
+        <pre><code>sixfour --help</code></pre>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+        <h2 id="doc-license">License</h2>
+        <p>The MIT License (MIT)</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>Copyright (c) 2013 Chris Simpkins</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
       </section>
 
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+
   </body>
 </html>
