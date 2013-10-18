@@ -46,7 +46,6 @@
         <ul>
           <li><a href="#doc-description">Description</a></li>
           <li><a href="#doc-dependency">Dependencies</a></li>
-          <li><a href="#doc-source">Obtain the Source Code</a></li>
           <li><a href="#doc-install">Install</a></li>
           <li><a href="#doc-usage">Usage</a></li>
           <li><a href="#doc-help">Help</a></li>
@@ -60,17 +59,23 @@
           <p>Six-Four is <a href="http://www.python.org/">Python powered</a>.  You must have Python 2 or 3 installed on your system in order to use it.</p>
           <p>It has been tested in Python versions 2.7.5 and 3.3.2</p>
 
-        <h2 id="doc-source">Obtain the Source Code</h2>
+        <h2 id="doc-install">Install</h2>
+        <p>If you use pip for Python package management, you can install Six-Four with the following command:</p>
+        <pre><code>pip install sixfour</code></pre>
+        <p>That's it. Skip the remainder of this section if you use the above install method.</p>
+        <p>Otherwise, download the source code using one of the following methods:</p>
           <h3><i class="icon-caret-right"></i> Method 1: Clone the GitHub repository with Git</h3>
           <pre><code>git clone https://github.com/chrissimpkins/six-four.git</code></pre>
           <h3><i class="icon-caret-right"></i> Method 2: Download a compressed archive</h3>
           <p>Use one of the buttons in the top right corner of the screen to download a compressed archive of the source files.</p>
 
-        <h2 id="doc-install">Install</h2>
-        <p>Navigate to the top level directory in the source distribution and enter the following command:</p>
+        <p>Once you have a decompressed source archive, navigate to the top level directory in the source distribution and enter the following command:</p>
         <pre><code>python setup.py install</code></pre>
         <p>This installs a python script in your PATH so that you can use the application with the command:</p>
         <pre><code>sixfour</code></pre>
+        <p>Give it a try with the following command to confirm your install:</p>
+        <pre><code>sixfour --version</code></pre>
+        <p>If you see the version number displayed in your terminal, you are good to go.</p>
 
         <h2 id="doc-usage">Usage</h2>
         <h3><i class="icon-caret-right"></i> Available Options</h3>
