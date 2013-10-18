@@ -116,7 +116,7 @@
         <h3><i class="icon-caret-right"></i> base64 Encode and Pipe Through Standard Output Stream</h3>
           <pre><code>sixfour -i "path/to/image.png"</code></pre>
           <p>To pipe the base64 encoded image data through the standard output stream, enter an image file path as the argument to the <code>-i</code> or <code>--image</code> flag.</p>
-          <p>This will print the data to your terminal by default; however, you can use the pipelining capabilities of your OS to stream the data to the standard input of another command.</p>
+          <p>This will print the data to your terminal by default; however, you can use the pipelining capabilities of your OS to stream the data to the standard input of another application.</p>
           <pre><code>sixfour -i "path/to/image.png" | imageapp --processit</code></pre>
         <h3><i class="icon-caret-right"></i> base64 Encode and Embed as &lt;img&gt; Tag in HTML or Markdown</h3>
           <p>Insert the tag <code>{{64}}</code> at the site in your Markdown or HTML file where you want to embed the base64 encoded image tag:</p>
