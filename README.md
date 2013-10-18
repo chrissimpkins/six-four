@@ -1,7 +1,10 @@
-sixfour
+Six-Four
 ========
 
 A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, or CSS files at the site of a {{64}} tag.
+
+## Documentation Site
+[Six-Four documentation](http://chrissimpkins.github.io/six-four)
 
 ## Dependencies
 Requires Python 2 or 3
