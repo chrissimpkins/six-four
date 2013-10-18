@@ -161,3 +161,5 @@ sixfour --help
 
 ## License
 MIT license
+
+✪ Chris
