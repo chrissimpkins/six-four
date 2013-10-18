@@ -1,12 +1,14 @@
 sixfour
 ========
 
-A base64 encoder for images that optionally inserts encoded images as a &lt;img&gt; element at the site of a {{64}} tag in your HTML or Markdown files
+A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, or CSS files at the site of a {{64}} tag.
 
 ## Dependencies
-Requires Python v2.7.x
+Requires Python 2 or 3
 
-## Obtain the Python Source Code
+Tested in versions 2.7.5 and 3.3.2
+
+## Obtain the Source Code
 **Method 1**: Clone the sixfour repository with the following command:
 ```
 git clone https://github.com/chrissimpkins/six-four.git
@@ -35,7 +37,7 @@ sixfour -i 'path/to/image.png' | coolimageapp --process-it
 ```
 
 ### base64 Encoding --> &lt;img&gt; Tag in HTML or Markdown file
-Insert the tag `{{64}}` at the site in your Markdown or HTML file where you want to include the base64 encoded image tag:
+Insert the tag `{{64}}` at the site in your Markdown or HTML file where you want to embed the base64 encoded image tag:
 
 ``` html
 <!DOCTYPE html>
@@ -129,8 +131,26 @@ The `{{64}}` tag in the HTML above will be replaced with a &lt;img&gt; tag that 
 ```
 The image filename is used as the `<alt>` attribute in the tag.
 
+### base64 Encoding --> Embedded Data URI in CSS File
+Insert the tag `{{64}}` at the site in your CSS file where you want to embed the base64 encoded image data URI:
+``` css
+.base64test {
+	background: #fff {{64}} repeat-x;
+}
+```
+Include both the `-i` flag with an image file path and the `-c` flag with a CSS file path in your command:
+``` bash
+sixfour -i 'path/to/coolimage.png' -c 'path/to/main.css'
+```
+And the result will look like this:
+``` css
+.base64test {
+	background: #fff url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAIAAABLixI0AAAAOElEQVQ4y2N4Qz3AAMSfP73DJCEIPxuNZBh112Bz14cPEISPjdVdg9Ws0fAaDa8hHF6j5dcQcxcA3DHODs/IAR8AAAAASUVORK5CYII=) repeat-x;
+}
+```
+
 ## Help
-In application help documentation is accessed with either of the following commands:
+Help documentation is accessed with either of the following commands:
 ``` bash
 sixfour -h
 ```
