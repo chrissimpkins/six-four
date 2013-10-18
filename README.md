@@ -11,7 +11,14 @@ Requires Python 2 or 3
 
 Tested in versions 2.7.5 and 3.3.2
 
-## Obtain the Source Code
+## Install
+
+If you use pip for Python package management, you can install Six-Four with the following command:
+```
+pip install sixfour
+```
+Otherwise, obtain the source code with one of the following methods:
+
 **Method 1**: Clone the sixfour repository with the following command:
 ```
 git clone https://github.com/chrissimpkins/six-four.git
@@ -22,8 +29,7 @@ git clone https://github.com/chrissimpkins/six-four.git
 
 [zip archive](https://github.com/chrissimpkins/six-four/zipball/master)
 
-## Install
-Navigate to the top level of the source directory and run the following command:
+Then, navigate to the top level of the source directory and run the following command:
 ``` python
 python setup.py install
 ```
