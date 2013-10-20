@@ -9,7 +9,7 @@
 # 3 > Run this file
 #    - creates sixfour 'binary' script for user to run at CL
 # 4 > Upload to PyPi
-#    - python setup.py upload
+#    - python setup.py sdist upload
 
 # create the main script that will run from the command line
 cp sixfour.py sixfour

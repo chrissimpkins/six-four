@@ -5,7 +5,7 @@ import os
 import getopt
 
 # Constants
-VERSION = "1.1.0"
+VERSION = "1.1.2"
 REPLACE_TAG = "{{64}}"
 
 def main(argv):
@@ -92,6 +92,13 @@ Use the replacement tag {{64}} in your HTML or Markdown file at the location whe
 
 ## Embed a base64 encoded image in a CSS element:
 Use the replacement tag {{64}} in your CSS file at the location where you would like to embed your base64 data URI.  Include the recipient CSS file path with the -c or --css flag in your command.  Include the image path with the -i or --image flag.
+
+SOURCE REPOSITORY
+http://github.com/chrissimpkins/six-four
+
+DOCUMENTATION
+http://chrissimpkins.github.io/six-four/
+
     """
     print(helpstring)
 

@@ -1,10 +1,39 @@
-Metadata-Version: 1.0
+Metadata-Version: 1.1
 Name: sixfour
-Version: 1.1.0
-Summary: base64 Image Encoder
-Home-page: https://github.com/chrissimpkins/six-four
+Version: 1.1.2
 Author: Christopher Simpkins
-Author-email: chris@zerolabs.net
+Author-email: chris at zerolabs net
+Maintainer: Christopher Simpkins
+Maintainer-email: chris at zerolabs net
+Home-page: https://github.com/chrissimpkins/six-four
+Download-url: https://github.com/chrissimpkins/six-four/tarball/master
+Summary: base64 Image Encoder and Embedder
 License: MIT License
-Description: A base64 encoder for images that optionally inserts the encoded image as a <img> element at the site of a {{64}} tag in your HTML or Markdown files
-Platform: Any
+Description: Six-Four is a base64 encoder for images that allows you to embed an appropriately formatted, encoded image in HTML, Markdown, or CSS files, or to stream the raw image data through the standard output stream.
+
+        `Six-Four Documentation <http://chrissimpkins.github.io/six-four/>`_
+
+        Tested in Python v2.7.5 & v3.3.2
+Keywords: image,base64,web,internet,CSS,HTML,Markdown
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: MacOS X
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Other OS
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: BSD
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Internet
+Classifier: Topic :: Multimedia
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Software Development :: Code Generators
