@@ -5,7 +5,7 @@ import os
 import getopt
 
 # Constants
-VERSION = "1.1.2"
+VERSION = "1.1.3"
 REPLACE_TAG = "{{64}}"
 
 def main(argv):
@@ -153,7 +153,9 @@ def sixfourit(inpath):
         with open(inpath, "rb") as f:
             data = f.read()
             f.close()
-        if (sys.version_info > (3, 0)):
+        # test the sys.version_info tuple for major version number
+        py3 = sys.version_info[0] > 2
+        if py3:
             # Python 3
             import base64
             return base64.b64encode(data).decode()
