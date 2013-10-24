@@ -171,4 +171,16 @@ sixfour --help
 ## License
 MIT license
 
+## Changelog
+
+v.1.1.3 - modified Python 3 vs 2 interpreter check
+
+v.1.1.2 - updated -h flag help documentation
+
+v.1.1.0 - added Python 3 support with Python 2 + 3 tests
+
+v.1.0.1 - added alt attribute completion with image filename
+
+v1.0.0 - initial release
+
 ✪ Chris
