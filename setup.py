@@ -14,7 +14,7 @@ setup(name='sixfour',
       scripts=['sixfour'],
       license='MIT License',
       keywords='image,base64,web,internet,CSS,HTML,Markdown,sass,scss',
-      long_description="""Six-Four is a base64 encoder for images that allows you to embed an appropriately formatted, encoded image in HTML, Markdown, CSS, or SASS files, or to stream the raw image data through the standard output stream.
+      long_description="""Six-Four is a base64 encoder for images that embeds an appropriately formatted, encoded image in HTML, Markdown, CSS, or SASS files, or streams the raw image data through the standard output stream.
 
         `Six-Four Documentation <http://chrissimpkins.github.io/six-four/>`_
 
