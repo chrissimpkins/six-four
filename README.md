@@ -159,7 +159,7 @@ And your CSS file will look like this:
 ```
 
 ### base64 Encoding --> Embedded Data URI in SASS File
-If you use the -s or --sass flag with the file path to a SASS file, you can use the SASS variable $sixfour as the embed tag for your data URI.  You do not need to define this variable in your SASS file, simply insert it where you would like the data URI to be embedded.
+If you use the -s or --sass flag with the file path to a SASS file, you can use the SASS variable `$sixfour` as the embed tag for your data URI.  You do not need to define this variable in your SASS file, simply insert it where you would like the data URI to be embedded.
 ``` sass
 .funky {
   background: #fff $sixfour repeat-x;
