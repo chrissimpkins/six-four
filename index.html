@@ -80,7 +80,7 @@
 
         <p>Once you have a decompressed source archive, navigate to the top level directory in the source distribution and enter the following command:</p>
         <pre><code>python setup.py install</code></pre>
-        <p>This installs a python script in your PATH so that you can use the application with the command:</p>
+        <p>This installs a Python script in your PATH so that you can use the application with the command:</p>
         <pre><code>sixfour</code></pre>
         <p>Give it a try with the following command to confirm your install:</p>
         <pre><code>sixfour --version</code></pre>
@@ -136,7 +136,7 @@
         <div id="doc-stdout" style="margin-top:50px;"><h3><i class="icon-caret-right"></i> base64 Encode and Pipe Through Standard Output Stream</h3></div>
           <pre><code>sixfour -i "path/to/image.png"</code></pre>
           <p>To pipe the base64 encoded image data through the standard output stream, enter an image file path as the argument to the <code>-i</code> or <code>--image</code> flag.</p>
-          <p>This will print the data to your terminal by default; however, you can use the pipelining capabilities of your OS to stream the data to the standard input of another application.  On Unix (including Mac OSX) and Linux systems, use the pipe ('|') symbol to pipeline the data to application:</p>
+          <p>This will print the data to your terminal by default; however, you can use the pipelining capabilities of your OS to stream the data to the standard input of another application.  On Unix (including Mac OSX) and Linux systems, use the pipe ('|') symbol to pipeline the data to another application:</p>
           <pre><code>sixfour -i "path/to/image.png" | imageapp --processit</code></pre>
 
         <div id="doc-html" style="margin-top:50px;"><h3><i class="icon-caret-right"></i> base64 Encode and Embed as &lt;img&gt; Tag in HTML or Markdown File</h3></div>
