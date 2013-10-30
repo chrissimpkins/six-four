@@ -151,7 +151,7 @@ Include both the `-i` flag with an image file path and the `-c` (or --css=) flag
 ``` bash
 sixfour -i 'path/to/coolimage.png' -c 'path/to/main.css'
 ```
-And the result will look like this:
+And your CSS file will look like this:
 ``` css
 .base64test {
 	background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAIAAABLixI0AAAAOElEQVQ4y2N4Qz3AAMSfP73DJCEIPxuNZBh112Bz14cPEISPjdVdg9Ws0fAaDa8hHF6j5dcQcxcA3DHODs/IAR8AAAAASUVORK5CYII=') repeat-x;
