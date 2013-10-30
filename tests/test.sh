@@ -1,12 +1,17 @@
 #!/bin/sh
 
-# Cleanup previous tests
-if [ "$1" = "cleanup" ]; then
+# Function defs
+cleanup_files(){
 	cp image_bu.html image_test.html
 	cp image2_bu.html image2_test.html
 	cp imagecss_bu.css imagecss_test.css
 	cp md-test_bu.md md-test.md
 	cp imagesass_bu.scss imagesass_test.scss
+}
+
+# Cleanup previous tests
+if [ "$1" = "cleanup" ]; then
+	cleanup_files
 	if [ -f "dirty" ]; then
 		rm dirty
 	fi
@@ -92,16 +97,12 @@ else
 		echo "#### STOP"
 		exit 1
 	else
-		echo "... sass compile completed successfully"
+		echo "---> sass compile completed successfully"
 	fi
 	echo " "
 
 	# Cleanup for Python 3 tests
-	cp image_bu.html image_test.html
-	cp image2_bu.html image2_test.html
-	cp imagecss_bu.css imagecss_test.css
-	cp md-test_bu.md md-test.md
-	cp imagesass_bu.scss imagesass_test.scss
+	cleanup_files
 
 	# PYTHON 3.3 TESTS
 	# TEST: Python 3.3 Single tag replacement
@@ -160,7 +161,7 @@ else
 	echo "---DIFF END---"
 	echo " "
 
-		# TEST: Python 3.3 SASS tag replacement
+	# TEST: Python 3.3 SASS tag replacement
 	TEST_SASS_THREE="Python 3 SASS Image Embed"
 	echo "$TEST_SASS_THREE test started..."
 	python3 ../sixfour.py -i sos.png --sass=imagesass_test.scss
@@ -179,9 +180,60 @@ else
 		echo "#### STOP"
 		exit 1
 	else
-		echo "... sass compile completed successfully"
+		echo "---> sass compile completed successfully"
 	fi
 	echo " "
+
+	# Cleanup for Image MIME type test
+	cleanup_files
+
+	# TEST: GIF MIME TYPE TEST (Python 2.7)
+	TEST_GIF="GIF MIME type"
+	echo "$TEST_GIF test started..."
+	python ../sixfour.py -i nana.gif -c imagecss_test.css
+	grep 'data:image/gif' imagecss_test.css >&-
+	if (( $? )); then
+		echo "$TEST_GIF test failed"
+		echo "#### STOP"
+		exit 1
+	fi
+	echo "---> $TEST_GIF test completed successfully\n"
+
+	# TEST: JPG MIME TYPE TEST (Python 2.7)
+	TEST_JPG="JPG MIME type"
+	echo "$TEST_JPG test started..."
+	python ../sixfour.py -i nana.jpg -o image_test.html
+	grep 'data:image/jpg' image_test.html >&-
+	if (( $? )); then
+		echo "$TEST_JPG test failed"
+		echo "#### STOP"
+		exit 1
+	fi
+	echo "---> $TEST_JPG test completed successfully\n"
+
+	# TEST : PNG MIME TYPE TEST (Python 2.7)
+	TEST_PNG="PNG MIME type"
+	echo "$TEST_PNG test started..."
+	python ../sixfour.py -i sos.png -o md-test.md
+	grep 'data:image/png' md-test.md >&-
+	if (( $? )); then
+		echo "$TEST_PNG test failed"
+		echo "#### STOP"
+		exit 1
+	fi
+	echo "---> $TEST_PNG test completed successfully\n"
+
+	# TEST : SVG MIME TYPE TEST (Python 2.7)
+	TEST_SVG="SVG Mime type"
+	echo "$TEST_SVG test started..."
+	python ../sixfour.py -i commonslogo.svg -s imagesass_test.scss
+	grep 'data:image/svg+xml' imagesass_test.scss >&-
+	if (( $? )); then
+		echo "$TEST_SVG test failed"
+		echo "#### STOP"
+		exit 1
+	fi
+	echo "---> $TEST_SVG test completed successfully\n"
 
 fi
 
