@@ -138,7 +138,7 @@ The `{{64}}` tag in the HTML above will be replaced with a &lt;img&gt; tag that 
     </body>
 </html>
 ```
-The image filename is used as the `<alt>` attribute in the tag.  The image MIME type is automatically inserted based upon the file extension.
+The image filename is used as the `<alt>` attribute in the tag.  The image MIME type is automatically inserted in the data URI based upon your image file extension.
 
 ### base64 Encoding --> Embedded Data URI in CSS File
 Insert the tag `{{64}}` at the site in your CSS file where you want to embed the base64 encoded image data URI:
@@ -147,7 +147,7 @@ Insert the tag `{{64}}` at the site in your CSS file where you want to embed the
 	background: #fff {{64}} repeat-x;
 }
 ```
-Include both the `-i` flag with an image file path and the `-c` flag with a CSS file path in your command:
+Include both the `-i` flag with an image file path and the `-c` (or --css=) flag with a CSS file path in your command:
 ``` bash
 sixfour -i 'path/to/coolimage.png' -c 'path/to/main.css'
 ```
@@ -159,7 +159,7 @@ And the result will look like this:
 ```
 
 ### base64 Encoding --> Embedded Data URI in SASS File
-If you use the -s or --sass flag with the file path to a SASS file, you can use the SASS variable $sixfour as the replacement site for your data URI.  You do not need to define this variable in your SASS file, simply insert it where you would like the data URI to be inserted.  
+If you use the -s or --sass flag with the file path to a SASS file, you can use the SASS variable $sixfour as the replacement site for your data URI.  You do not need to define this variable in your SASS file, simply insert it where you would like the data URI to be embedded.
 ``` sass
 .funky {
   background: #fff $sixfour repeat-x;
@@ -197,7 +197,7 @@ MIT license
 
 ## Changelog
 
-**v1.2.0** - added SASS file embed support + bug fixes for CSS embed + automatic MIME type detection
+**v1.2.0** - added SASS file embed support + bug fixes for CSS embed + automatic MIME type detection for jpg, gif, png, and svg file types
 
 **v1.1.3** - modified Python 3 vs 2 interpreter check
 
