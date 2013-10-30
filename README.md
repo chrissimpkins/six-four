@@ -1,7 +1,7 @@
 Six-Four
 ========
 
-A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, or CSS files at the site of a {{64}} tag.
+A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, CSS, or SASS files at the site of a {{64}} tag.
 
 ## Documentation Site
 [Six-Four documentation](http://chrissimpkins.github.io/six-four)
@@ -138,7 +138,7 @@ The `{{64}}` tag in the HTML above will be replaced with a &lt;img&gt; tag that 
     </body>
 </html>
 ```
-The image filename is used as the `<alt>` attribute in the tag.
+The image filename is used as the `<alt>` attribute in the tag.  The image MIME type is automatically inserted based upon the file extension.
 
 ### base64 Encoding --> Embedded Data URI in CSS File
 Insert the tag `{{64}}` at the site in your CSS file where you want to embed the base64 encoded image data URI:
@@ -154,9 +154,33 @@ sixfour -i 'path/to/coolimage.png' -c 'path/to/main.css'
 And the result will look like this:
 ``` css
 .base64test {
-	background: #fff url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAIAAABLixI0AAAAOElEQVQ4y2N4Qz3AAMSfP73DJCEIPxuNZBh112Bz14cPEISPjdVdg9Ws0fAaDa8hHF6j5dcQcxcA3DHODs/IAR8AAAAASUVORK5CYII=) repeat-x;
+	background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAIAAABLixI0AAAAOElEQVQ4y2N4Qz3AAMSfP73DJCEIPxuNZBh112Bz14cPEISPjdVdg9Ws0fAaDa8hHF6j5dcQcxcA3DHODs/IAR8AAAAASUVORK5CYII=') repeat-x;
 }
 ```
+
+### base64 Encoding --> Embedded Data URI in SASS File
+If you use the -s or --sass flag with the file path to a SASS file, you can use the SASS variable $sixfour as the replacement site for your data URI.  You do not need to define this variable in your SASS file, simply insert it where you would like the data URI to be inserted.  
+``` sass
+.funky {
+  background: #fff $sixfour repeat-x;
+  font: 2px/3px {
+    family: fantasy;
+    size: 30em;
+    weight: bold;
+  }
+}
+```
+
+Then run Six-Four on your SASS file:
+``` bash
+sixfour -i 'path/to/coolimage.png' --sass='sass/main.scss'
+```
+
+and compile the file normally with sass:
+``` bash
+sass --update 'sass/main.scss'
+```
+
 
 ## Help
 Help documentation is accessed with either of the following commands:
@@ -173,13 +197,15 @@ MIT license
 
 ## Changelog
 
-**v.1.1.3** - modified Python 3 vs 2 interpreter check
+**v1.2.0** - added SASS file embed support + bug fixes for CSS embed + automatic MIME type detection
 
-**v.1.1.2** - updated -h flag help documentation
+**v1.1.3** - modified Python 3 vs 2 interpreter check
 
-**v.1.1.0** - added Python 3 support with Python 2 + 3 tests
+**v1.1.2** - updated -h flag help documentation
 
-**v.1.0.1** - added alt attribute completion with image filename
+**v1.1.0** - added Python 3 support with Python 2 + 3 tests
+
+**v1.0.1** - added alt attribute completion with image filename
 
 **v1.0.0** - initial release
 
