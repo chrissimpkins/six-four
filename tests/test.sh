@@ -6,6 +6,7 @@ if [ "$1" = "cleanup" ]; then
 	cp image2_bu.html image2_test.html
 	cp imagecss_bu.css imagecss_test.css
 	cp md-test_bu.md md-test.md
+	cp imagesass_bu.scss imagesass_test.scss
 	if [ -f "dirty" ]; then
 		rm dirty
 	fi
@@ -62,7 +63,7 @@ else
 	TEST_CSS="Python 2.7 CSS Image Embed"
 	echo "$TEST_CSS test started..."
 	python ../sixfour.py -i sos.png --css=imagecss_test.css
-		if (( $? )); then
+	if (( $? )); then
 		echo "$TEST_CSS failed"
 		echo "#### STOP"
 		exit 1
@@ -72,15 +73,39 @@ else
 	echo "---DIFF END---"
 	echo " "
 
+	# TEST: Python 2.7 SASS tag replacement
+	TEST_SASS="Python 2.7 SASS Image Embed"
+	echo "$TEST_SASS test started..."
+	python ../sixfour.py -i sos.png --sass=imagesass_test.scss
+	if (( $? )); then
+		echo "$TEST_SASS failed"
+		echo "#### STOP"
+		exit 1
+	fi
+	echo "--DIFF START--"
+	diff imagesass_test.scss imagesass_standard.scss
+	echo "--DIFF END--"
+	echo "Test sass compile after Python 2.7 image embed..."
+	sass ./imagesass_test.scss >&-
+	if (( $? )); then
+		echo "$TEST_SASS failed @ sass compile step"
+		echo "#### STOP"
+		exit 1
+	else
+		echo "... sass compile completed successfully"
+	fi
+	echo " "
+
 	# Cleanup for Python 3 tests
 	cp image_bu.html image_test.html
 	cp image2_bu.html image2_test.html
 	cp imagecss_bu.css imagecss_test.css
 	cp md-test_bu.md md-test.md
+	cp imagesass_bu.scss imagesass_test.scss
 
 	# PYTHON 3.3 TESTS
 	# TEST: Python 3.3 Single tag replacement
-	TEST_SINGLE_THREE="Python 3.3 Image Embed x 1"
+	TEST_SINGLE_THREE="Python 3 Image Embed x 1"
 	echo "$TEST_SINGLE_THREE test started..."
 	python3 ../sixfour.py -i sm-logo.png -o image_test.html
 	if (( $? )); then
@@ -94,7 +119,7 @@ else
 	echo " "
 
 	# TEST: Python 3 Two tag replacement
-	TEST_DOUBLE_THREE="Python 3.3 Image Embed x 2"
+	TEST_DOUBLE_THREE="Python 3 Image Embed x 2"
 	echo "$TEST_DOUBLE_THREE test started..."
 	python3 ../sixfour.py -i sm-logo.png -o image2_test.html
 	if (( $? )); then
@@ -108,7 +133,7 @@ else
 	echo " "
 
 	#TEST: Python 3.3 Markdown file image embed
-	TEST_MD_THREE="Python 3.3 Markdown Image Embed"
+	TEST_MD_THREE="Python 3 Markdown Image Embed"
 	echo "$TEST_MD_THREE test started..."
 	python3 ../sixfour.py -i sm-logo.png -o md-test.md
 	if (( $? )); then
@@ -122,7 +147,7 @@ else
 	echo " "
 
 	# TEST: Python 3.3 CSS tag replacement
-	TEST_CSS_THREE="Python 3.3 CSS Image Embed"
+	TEST_CSS_THREE="Python 3 CSS Image Embed"
 	echo "$TEST_CSS_THREE test started..."
 	python3 ../sixfour.py -i sos.png --css=imagecss_test.css
 		if (( $? )); then
@@ -133,6 +158,29 @@ else
 	echo "---DIFF START---"
 	diff imagecss_test.css imagecss_standard3.css
 	echo "---DIFF END---"
+	echo " "
+
+		# TEST: Python 3.3 SASS tag replacement
+	TEST_SASS_THREE="Python 3 SASS Image Embed"
+	echo "$TEST_SASS_THREE test started..."
+	python3 ../sixfour.py -i sos.png --sass=imagesass_test.scss
+	if (( $? )); then
+		echo "$TEST_SASS_THREE failed"
+		echo "#### STOP"
+		exit 1
+	fi
+	echo "--DIFF START--"
+	diff imagesass_test.scss imagesass3_standard.scss
+	echo "--DIFF END--"
+	echo "Test sass compile after Python 3 image embed..."
+	sass ./imagesass_test.scss >&-
+	if (( $? )); then
+		echo "$TEST_SASS_THREE failed @ sass compile step"
+		echo "#### STOP"
+		exit 1
+	else
+		echo "... sass compile completed successfully"
+	fi
 	echo " "
 
 fi

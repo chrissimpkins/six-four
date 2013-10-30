@@ -1,0 +1,14 @@
+// this test requires sass on the user machine
+// Install ruby gem with ==> gem install sass
+$coolvar: 5em;
+$asecondvar: #111;
+
+.funky {
+  background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAIAAABLixI0AAAAOElEQVQ4y2N4Qz3AAMSfP73DJCEI
+PxuNZBh112Bz14cPEISPjdVdg9Ws0fAaDa8hHF6j5dcQcxcA3DHODs/IAR8AAAAASUVORK5CYII=') repeat-x;
+  font: 2px/3px {
+    family: fantasy;
+    size: 30em;
+    weight: bold;
+  }
+}
