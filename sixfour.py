@@ -19,7 +19,7 @@ def main(argv):
     i = 0
 
     try:
-        opts, args = getopt.getopt(argv, "chi:o:s:v", ["css=", "image=", "html=", "help", "sass=", "version"])
+        opts, args = getopt.getopt(argv, "c:hi:o:s:v", ["css=", "image=", "html=", "help", "sass=", "version"])
     except getopt.GetoptError:
         print("Usage: sixfour [-cios][--css=,--image=,--html=,--sass=] <arg>")
         print("Help: sixfour -h | --help")
@@ -86,7 +86,7 @@ A base64 encoder for images that optionally embeds encoded image data in HTML, M
 USAGE
   sixfour [-cios] [--css=,--image=,--html=,--sass=] <arg>
 
-REPLACEMENT TAG
+SOURCE FILE EMBED TAG
   CSS, HTML, and Markdown: {{64}}
   SASS: $sixfour
 
@@ -104,16 +104,16 @@ EXAMPLES
   sixfour -i "img/image.png" --sass="sass/main.scss"
 
 NOTES
--->> Access the data through the standard output stream:
+-->> Access the data through the standard output stream <<--
 To push the base64 encoded image data to the standard output stream, use the image filepath only (-i or --image).
 
--->> Embed a base64 encoded image in a HTML or Markdown file:
-Use the replacement tag {{64}} in your HTML or Markdown file at the location where you would like to embed a base64 data URI in an HTML <img> tag.  Include the recipient file path with the -o or --html flag in your command.  Include the image path with the -i or --image flag.
+-->> Embed a base64 encoded image in a HTML or Markdown file <<--
+Use the embed tag {{64}} in your HTML or Markdown file at the location where you would like to embed a base64 data URI in an HTML <img> tag.  Include the recipient file path with the -o or --html flag in your command.  Include the image path with the -i or --image flag.
 
--->> Embed a base64 encoded image in a CSS element:
-Use the replacement tag {{64}} in your CSS file at the location where you would like to embed your base64 data URI.  Include the recipient CSS file path with the -c or --css flag in your command.  Include the image path with the -i or --image flag. The image MIME type is automatically detected from the filename extension.
+-->> Embed a base64 encoded image in a CSS element <<--
+Use the embed tag {{64}} in your CSS file at the location where you would like to embed your base64 data URI.  Include the recipient CSS file path with the -c or --css flag in your command.  Include the image path with the -i or --image flag. The image MIME type is automatically detected from the filename extension.
 
--->> Embed a base64 encoded image in a SASS element:
+-->> Embed a base64 encoded image in a SASS element <<--
 When you use the -s or --sass flags with a path to the sass file, sixfour will embed the base64 data URI at the site of the sass variable $sixfour instead of at the typical tag {{64}}.  It is not necessary to define this variable in your sass file and it does not obey standard sass variable scope rules.  Simply insert it in the location(s) where you intend to embed the data URI.  Use the -c or --css flags if you would prefer to use the {{64}} tag in sass files.
 
 SOURCE REPOSITORY
