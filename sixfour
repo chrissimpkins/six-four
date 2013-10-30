@@ -5,8 +5,9 @@ import os
 import getopt
 
 # Constants
-VERSION = "1.1.3"
+VERSION = "1.2.0"
 REPLACE_TAG = "{{64}}"
+SASS_REPLACE_TAG = "$sixfour"
 
 def main(argv):
     basesixfour = ""
@@ -14,12 +15,15 @@ def main(argv):
     htmlpath = ""
     csspath = ""
     css = 0
+    sass = 0
     i = 0
 
     try:
-        opts, args = getopt.getopt(argv, "chi:o:v", ["css=", "image=", "html=", "help", "version"])
+        opts, args = getopt.getopt(argv, "chi:o:s:v", ["css=", "image=", "html=", "help", "sass=", "version"])
     except getopt.GetoptError:
-        print("Usage: sixfour.py [-chiov][--css=,--image=,--html=,--help,--version] <arg>")
+        print("Usage: sixfour [-cios][--css=,--image=,--html=,--sass=] <arg>")
+        print("Help: sixfour -h | --help")
+        print("Version: sixfour -v | --version")
         sys.exit(1)
 
     for opt, arg in opts:
@@ -36,6 +40,10 @@ def main(argv):
         elif opt in ('-o', '--html'):
             htmlpath = arg
             i += 1
+        elif opt in ('-s', '--sass'):
+            sass = 1
+            csspath = arg
+            i += 1
         elif opt in ('-v', '--version'):
             version()
             sys.exit(0)
@@ -43,17 +51,23 @@ def main(argv):
     if i < 1:
         print("The image file path is missing.")
         sys.exit(1)
-    elif i == 1:
+    elif i == 1:  #print to std out
         basesixfour = sixfourit(inpath)
         basesixfour_stripped = basesixfour.rstrip()
         sys.stdout.write(basesixfour_stripped)
-    elif i == 2:
+    elif i == 2:  #in file and out file specified
         basesixfour = sixfourit(inpath)
         basesixfour_stripped = basesixfour.rstrip()
         if css:
             insertimg_css(csspath, basesixfour_stripped, inpath)
+        elif sass:
+            insertimg_sass(csspath, basesixfour_stripped, inpath)
         else:
             insertimg(htmlpath, basesixfour_stripped, inpath)
+    elif i > 2:  #too many options used on the CL
+        print("sixfour Error: You entered too many options.")
+        print("Type sixfour --help to view the help documentation")
+        sys.exit(1)
 
 
 
@@ -67,31 +81,40 @@ MIT License
 -----------------------------------
 
 DESCRIPTION
-A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, or CSS files at the site of a {{64}} tag.
+A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, CSS, or SASS files.
 
 USAGE
-  sixfour [-chiov] [--css=,--image=,--html=,--help,--version] <arg>
+  sixfour [-cios] [--css=,--image=,--html=,--sass=] <arg>
+
+REPLACEMENT TAG
+  CSS, HTML, and Markdown: {{64}}
+  SASS: $sixfour
 
 OPTIONS
   -c --css=     - embed in CSS file <filepath>
   -h --help     - view this help documentation
   -i --image=   - image <filepath>
   -o --html=    - embed in HTML or MD file <filepath>
+  -s --sass=    - embed in SASS file <filepath>
   -v --version  - show application version
 
 EXAMPLES
   sixfour -i "img/image.png" -o "index.html"
   sixfour -i "img/image.png" --css="css/main.css"
+  sixfour -i "img/image.png" --sass="sass/main.scss"
 
 NOTES
-## Access the data through the standard output stream:
+-->> Access the data through the standard output stream:
 To push the base64 encoded image data to the standard output stream, use the image filepath only (-i or --image).
 
-## Embed a base64 encoded image in a HTML or Markdown file:
+-->> Embed a base64 encoded image in a HTML or Markdown file:
 Use the replacement tag {{64}} in your HTML or Markdown file at the location where you would like to embed a base64 data URI in an HTML <img> tag.  Include the recipient file path with the -o or --html flag in your command.  Include the image path with the -i or --image flag.
 
-## Embed a base64 encoded image in a CSS element:
-Use the replacement tag {{64}} in your CSS file at the location where you would like to embed your base64 data URI.  Include the recipient CSS file path with the -c or --css flag in your command.  Include the image path with the -i or --image flag.
+-->> Embed a base64 encoded image in a CSS element:
+Use the replacement tag {{64}} in your CSS file at the location where you would like to embed your base64 data URI.  Include the recipient CSS file path with the -c or --css flag in your command.  Include the image path with the -i or --image flag. The image MIME type is automatically detected from the filename extension.
+
+-->> Embed a base64 encoded image in a SASS element:
+When you use the -s or --sass flags with a path to the sass file, sixfour will embed the base64 data URI at the site of the sass variable $sixfour instead of at the typical tag {{64}}.  It is not necessary to define this variable in your sass file and it does not obey standard sass variable scope rules.  Simply insert it in the location(s) where you intend to embed the data URI.  Use the -c or --css flags if you would prefer to use the {{64}} tag in sass files.
 
 SOURCE REPOSITORY
 http://github.com/chrissimpkins/six-four
@@ -124,7 +147,7 @@ def insertimg_css(csspath, base64string, imgpath):
         with open(csspath, "r+") as f:
             cssstring = f.read()
             f.seek(0)
-            the_b64 = makecsstag(base64string)
+            the_b64 = makecsstag(base64string, imgpath)
             new_cssstring = cssstring.replace(REPLACE_TAG, the_b64)
             f.write(new_cssstring)
             f.close()
@@ -134,17 +157,65 @@ def insertimg_css(csspath, base64string, imgpath):
         print((str(e)))
         sys.exit(1)
 
-def makeimgtag(base64string, imgfile):
-    pretag = """<img src="data:image/png;base64, """
-    basefile = os.path.basename(imgfile)
+def insertimg_sass(sasspath, base64string, imgpath):
+    sassstring = ""
+    try:
+        with open(sasspath, "r+") as f:
+            sassstring = f.read()
+            f.seek(0)
+            the_b64 = makecsstag(base64string, imgpath)
+            new_sassstring = sassstring.replace(SASS_REPLACE_TAG, the_b64)
+            f.write(new_sassstring)
+            f.close()
+            print("Insertion completed successfully")
+    except Exception as e:
+        print("Unable to embed your base64 encoded image in the SASS file")
+        print((str(e)))
+        sys.exit(1)
+
+def makeimgtag(base64string, imagepath):
+    themime = ""
+    gifmime = "image/gif"
+    jpgmime = "image/jpg"
+    pngmime = "image/png"
+    svgmime = "image/svg+xml"
+    # define the correct image MIME type
+    if (imagepath.endswith(".png") or imagepath.endswith(".PNG")):
+        themime = pngmime
+    elif (imagepath.endswith(".jpg") or imagepath.endswith(".jpeg") or imagepath.endswith(".JPG") or imagepath.endswith(".JPEG")):
+        themime = jpgmime
+    elif (imagepath.endswith(".gif") or imagepath.endswith(".GIF")):
+        themime = gifmime
+    elif (imagepath.endswith(".svg") or imagepath.endswith(".SVG")):
+        themime = svgmime
+    else: #default to a png if cannot find the suffix
+        themime = pngmime
+    pretag = """<img src="data:""" + themime + """;base64, """
+    basefile = os.path.basename(imagepath)
     basename = os.path.splitext(basefile)[0]
     posttag = '" ' + "alt='" + basename + "' />"
     the_string = pretag + base64string + posttag
     return the_string
 
-def makecsstag(base64string):
-    pretag = """url(data:image/gif;base64,"""
-    posttag = ")"
+def makecsstag(base64string, imagepath):
+    themime = ""
+    gifmime = "image/gif"
+    jpgmime = "image/jpg"
+    pngmime = "image/png"
+    svgmime = "image/svg+xml"
+    # define the correct image MIME type
+    if (imagepath.endswith(".png") or imagepath.endswith(".PNG")):
+        themime = pngmime
+    elif (imagepath.endswith(".jpg") or imagepath.endswith(".jpeg") or imagepath.endswith(".JPG") or imagepath.endswith(".JPEG")):
+        themime = jpgmime
+    elif (imagepath.endswith(".gif") or imagepath.endswith(".GIF")):
+        themime = gifmime
+    elif (imagepath.endswith(".svg") or imagepath.endswith(".SVG")):
+        themime = svgmime
+    else: #default to a png if cannot find the suffix
+        themime = pngmime
+    pretag = """url('data:""" + themime + """;base64,"""
+    posttag = "')"
     the_string = pretag + base64string + posttag
     return the_string
 
