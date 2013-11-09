@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Six-Four | base64 Image Encoder and Embedder for HTML, Markdown, CSS, and SASS Files</title>
-    <meta itemprop="description" content="A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, CSS, or SASS files at the site of a {{64}} tag.">
-    <meta name="description" content="A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, CSS, or SASS files at the site of a {{64}} tag.">
+    <title>Six-Four | base64 Image Encoder and Embedder for HTML, Markdown, CSS, LESS, and SASS Files</title>
+    <meta itemprop="description" content="A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, CSS, LESS, or SASS files at the site of a {{64}} tag.">
+    <meta name="description" content="A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, CSS, LESS, or SASS files at the site of a {{64}} tag.">
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
@@ -37,7 +37,7 @@
       <section>
         <div id="title">
           <h1>Six-Four</h1>
-          <p>A base64 encoder for images that embeds encoded image data in HTML, Markdown, CSS, or SASS files at the site of an embed tag.</p>
+          <p>A base64 encoder for images that embeds encoded image data in HTML, Markdown, CSS, LESS, or SASS files at the site of an embed tag.</p>
           <hr>
           <span class="credits left">Developed by Chris Simpkins <a href="https://github.com/chrissimpkins"><i class="icon-github icon-large"></i></a> <a href="http://twitter.com/csimpkins" class="twitter-blue"><i class="icon-twitter icon-large"></i></a></span>
           <span class="credits right">Proudly hosted by <a href="http://www.github.com"><i class="icon-github icon-large"></i></a></span>
@@ -53,6 +53,7 @@
                   <li><a href="#doc-stdout">Pipe to Standard Output</a></li>
                   <li><a href="#doc-html">Embed in HTML or Markdown</a></li>
                   <li><a href="#doc-css">Embed in CSS</a></li>
+                  <li><a href="#doc-less">Embed in LESS</a>
                   <li><a href="#doc-sass">Embed in SASS</a></li>
               </ul>
           </li>
@@ -61,7 +62,7 @@
         </ul>
 
         <h2 id="doc-description">Description</h2>
-          <p>Six-Four is a base64 encoder for images that embeds an appropriately formatted, encoded image in HTML, Markdown, CSS, or SASS files.  It will optionally stream the raw encoded image data through the standard output stream for use in other applications.</p>
+          <p>Six-Four is a base64 encoder for images that embeds an appropriately formatted, encoded image in HTML, Markdown, CSS, LESS, or SASS files.  It will optionally stream the raw encoded image data through the standard output stream for use in other applications.</p>
           <p>The application automatically detects the image MIME type and appropriately formats your embedded tag output according to the specifications of the target file type.</p>
 
         <h2 id="doc-dependency">Dependencies</h2>
@@ -72,7 +73,7 @@
         <p>If you use pip for Python package management, you can install Six-Four with the following command:</p>
         <pre><code>pip install sixfour</code></pre>
         <p>That's it. Skip the remainder of this section if you use the above install method.  You can upgrade to new releases with the command: <code>pip install --upgrade sixfour</code></p>
-        <p>Otherwise, download the source code using one of the following methods:</p>
+        <p>Otherwise, download the current source code release using one of the following methods:</p>
           <h3><i class="icon-caret-right"></i> Method 1: Clone the GitHub repository with Git</h3>
           <pre><code>git clone https://github.com/chrissimpkins/six-four.git</code></pre>
           <h3><i class="icon-caret-right"></i> Method 2: Download a compressed archive</h3>
@@ -112,6 +113,12 @@
           <td>--image</td>
           <td>&lt;Image filepath&gt;</td>
           <td>Input image file path</td>
+        </tr>
+        <tr>
+          <td>-l</td>
+          <td>--less</td>
+          <td>&lt;LESS filepath&gt;</td>
+          <td>Embed encoded data in LESS</td>
         </tr>
         <tr>
           <td>-o</td>
@@ -240,6 +247,21 @@
           <pre><code>.base64test {
     background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAIAAABLixI0AAAAOElEQVQ4y2N4Qz3AAMSfP73DJCEIPxuNZBh112Bz14cPEISPjdVdg9Ws0fAaDa8hHF6j5dcQcxcA3DHODs/IAR8AAAAASUVORK5CYII=') repeat-x;
 }</code></pre>
+
+      <div id="doc-less" style="margin-top:50px;"><h3><i class="icon-caret-right"></i> base64 Encode and Embed in LESS File</h3></div>
+      <p>Use the -l or --less flag with a path to the LESS file. Insert the LESS variable <code>@sixfour</code> at the site where you would like to embed your base64 encoded image. This variable does not need to be defined in your LESS file.</p>
+      <pre><code>
+        .funky {
+  background: #fff @sixfour repeat-x;
+  font: 2px/3px {
+    family: fantasy;
+    size: 30em;
+    weight: bold;
+  }
+}
+      </code></pre>
+      <p>Run Six-Four on your LESS file (before you compile it with LESS) with the following syntax:</p>
+      <pre><code>sixfour -i 'path/to/coolimage.png' --less='less/main.less'</code></pre>
       <div id="doc-sass" style="margin-top:50px;"><h3><i class="icon-caret-right"></i> base64 Encode and Embed in SASS File</h3></div>
       <p>If you use the -s or --sass flag with the file path to a SASS file, you can use the SASS variable <code>$sixfour</code> as the embed tag for your data URI.  Insert the variable at one or more sites in the target SASS file where you would like to embed the encoded data URI.  You do not need to define this variable in your SASS file, simply insert it where you would like the data URI to be embedded.</p>
       <pre><code>.funky {
