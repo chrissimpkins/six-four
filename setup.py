@@ -2,7 +2,7 @@
 
 from distutils.core import setup
 setup(name='sixfour',
-      version='1.2.0',
+      version='1.3.0',
       description='base64 Image Encoder and Embedder',
       author='Christopher Simpkins',
       author_email='chris@zerolabs.net',
@@ -13,8 +13,8 @@ setup(name='sixfour',
       py_modules=['sixfour'],
       scripts=['sixfour'],
       license='MIT License',
-      keywords='image,base64,web,internet,CSS,HTML,Markdown,sass,scss',
-      long_description="""Six-Four is a base64 encoder for images that embeds an appropriately formatted, encoded image in HTML, Markdown, CSS, or SASS files, or streams the raw image data through the standard output stream.
+      keywords='image,base64,web,internet,CSS,HTML,Markdown,sass,scss,less',
+      long_description="""Six-Four is a base64 encoder for images that embeds an appropriately formatted, encoded image in HTML, Markdown, CSS, LESS, or SASS files, or streams the raw image data through the standard output stream.
 
         `Six-Four Documentation <http://chrissimpkins.github.io/six-four/>`_
 
