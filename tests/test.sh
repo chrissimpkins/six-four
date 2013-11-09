@@ -7,6 +7,7 @@ cleanup_files(){
 	cp imagecss_bu.css imagecss_test.css
 	cp md-test_bu.md md-test.md
 	cp imagesass_bu.scss imagesass_test.scss
+	cp imageless_bu.less imageless_test.less
 }
 
 # Cleanup previous tests
@@ -101,6 +102,20 @@ else
 	fi
 	echo " "
 
+	# TEST: Python 2.7 LESS tag replacment
+	TEST_LESS="Python 2.7 LESS Image Embed"
+	echo "$TEST_LESS test started..."
+	python ../sixfour.py -i sos.png --less=imageless_test.less
+	if (( $? )); then
+		echo "$TEST_LESS failed"
+		echo "#### STOP"
+		exit 1
+	fi
+	echo "--DIFF START--"
+	diff imageless_test.less imageless_standard.less
+	echo "--DIFF END--"
+	echo " "
+
 	# Cleanup for Python 3 tests
 	cleanup_files
 
@@ -182,6 +197,20 @@ else
 	else
 		echo "---> sass compile completed successfully"
 	fi
+	echo " "
+
+	# TEST: Python 3.3 LESS tag replacment
+	TEST_LESS_THREE="Python 3.3 LESS Image Embed"
+	echo "$TEST_LESS_THREE test started..."
+	python3 ../sixfour.py -i sos.png --less=imageless_test.less
+	if (( $? )); then
+		echo "$TEST_LESS_THREE failed"
+		echo "#### STOP"
+		exit 1
+	fi
+	echo "--DIFF START--"
+	diff imageless_test.less imageless3_standard.less
+	echo "--DIFF END--"
 	echo " "
 
 	# Cleanup for Image MIME type test
