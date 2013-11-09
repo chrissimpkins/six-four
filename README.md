@@ -1,4 +1,4 @@
-Six-Four [![PyPI version](https://badge.fury.io/py/sixfour.png)](http://badge.fury.io/py/sixfour)
+Six-Four [![PyPI version](https://badge.fury.io/py/sixfour.png)](http://badge.fury.io/py/sixfour) [![Six-Four Downloads](https://pypip.in/d/sixfour/badge.png)](https://pypi.python.org/pypi/sixfour)
 ========
 
 A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, CSS, LESS, or SASS files at the site of a {{64}} tag.
