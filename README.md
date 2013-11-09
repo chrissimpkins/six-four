@@ -1,7 +1,7 @@
 Six-Four [![PyPI version](https://badge.fury.io/py/sixfour.png)](http://badge.fury.io/py/sixfour)
 ========
 
-A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, CSS, or SASS files at the site of a {{64}} tag.
+A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, CSS, LESS, or SASS files at the site of a {{64}} tag.
 
 ## Documentation Site
 [Six-Four documentation](http://chrissimpkins.github.io/six-four)
@@ -158,8 +158,27 @@ And your CSS file will look like this:
 }
 ```
 
+### base64 Encoding --> Embedded Data URI in LESS File
+Use the -l or --less flag with a path to the LESS file.  Insert the LESS variable @sixfour at the site where you would like to embed your base64 encoded image.  This variable does not need to be defined in your LESS file.
+
+``` sass
+.funky {
+  background: #fff @sixfour repeat-x;
+  font: 2px/3px {
+    family: fantasy;
+    size: 30em;
+    weight: bold;
+  }
+}
+```
+
+Run Six-Four on your LESS file (before you compile it with LESS) with the following syntax:
+``` bash
+sixfour -i 'path/to/coolimage.png' --less='less/main.less'
+```
+
 ### base64 Encoding --> Embedded Data URI in SASS File
-If you use the -s or --sass flag with the file path to a SASS file, you can use the SASS variable `$sixfour` as the embed tag for your data URI.  You do not need to define this variable in your SASS file, simply insert it where you would like the data URI to be embedded.
+If you use the -s or --sass flag with the file path to a SASS file, you can use the SASS variable $sixfour at the replacement site for your data URI.  You do not need to define this variable in your SASS file, simply insert it where you would like the data URI to be embedded.
 ``` sass
 .funky {
   background: #fff $sixfour repeat-x;
@@ -171,7 +190,7 @@ If you use the -s or --sass flag with the file path to a SASS file, you can use 
 }
 ```
 
-Then run Six-Four on your SASS file:
+Then run Six-Four on your SASS file (before your compile it with SASS or Compass) using the following syntax:
 ``` bash
 sixfour -i 'path/to/coolimage.png' --sass='sass/main.scss'
 ```
@@ -196,6 +215,8 @@ sixfour --help
 MIT license
 
 ## Changelog
+
+**v1.3.0** - added LESS file embed support
 
 **v1.2.0** - added SASS file embed support + bug fixes for CSS embed + automatic MIME type detection for jpg, gif, png, and svg file types
 
