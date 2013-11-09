@@ -216,6 +216,8 @@ MIT license
 
 ## Changelog
 
+**v1.3.0** - added LESS file embed support
+
 **v1.2.0** - added SASS file embed support + bug fixes for CSS embed + automatic MIME type detection for jpg, gif, png, and svg file types
 
 **v1.1.3** - modified Python 3 vs 2 interpreter check
