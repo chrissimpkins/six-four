@@ -9,7 +9,7 @@ Home-page: https://github.com/chrissimpkins/six-four
 Download-url: https://github.com/chrissimpkins/six-four/tarball/master
 Summary: base64 Image Encoder and Embedder
 License: MIT License
-Description: Six-Four is a base64 encoder for images that allows you to embed an appropriately formatted, encoded image in HTML, Markdown, CSS, or SASS files, or to stream the raw image data through the standard output stream.
+Description: Six-Four is a base64 encoder for images that allows you to embed an appropriately formatted, encoded image in HTML, Markdown, CSS, LESS, or SASS files, or to stream the raw image data through the standard output stream.
 
         `Six-Four Documentation <http://chrissimpkins.github.io/six-four/>`_
 
