@@ -5,9 +5,10 @@ import os
 import getopt
 
 # Constants
-VERSION = "1.2.0"
+VERSION = "1.3.0"
 REPLACE_TAG = "{{64}}"
 SASS_REPLACE_TAG = "$sixfour"
+LESS_REPLACE_TAG = "@sixfour"
 
 def main(argv):
     basesixfour = ""
@@ -16,12 +17,13 @@ def main(argv):
     csspath = ""
     css = 0
     sass = 0
+    less = 0
     i = 0
 
     try:
-        opts, args = getopt.getopt(argv, "c:hi:o:s:v", ["css=", "image=", "html=", "help", "sass=", "version"])
+        opts, args = getopt.getopt(argv, "c:hi:l:o:s:v", ["css=", "image=", "html=", "help", "less=", "sass=", "version"])
     except getopt.GetoptError:
-        print("Usage: sixfour [-cios][--css=,--image=,--html=,--sass=] <arg>")
+        print("Usage: sixfour [-cilos][--css=,--image=,--html=,--less=,--sass=] <arg>")
         print("Help: sixfour -h | --help")
         print("Version: sixfour -v | --version")
         sys.exit(1)
@@ -39,6 +41,10 @@ def main(argv):
             i += 1
         elif opt in ('-o', '--html'):
             htmlpath = arg
+            i += 1
+        elif opt in ('-l', '--less'):
+            less = 1
+            csspath = arg
             i += 1
         elif opt in ('-s', '--sass'):
             sass = 1
@@ -62,6 +68,8 @@ def main(argv):
             insertimg_css(csspath, basesixfour_stripped, inpath)
         elif sass:
             insertimg_sass(csspath, basesixfour_stripped, inpath)
+        elif less:
+            insertimg_less(csspath, basesixfour_stripped, inpath)
         else:
             insertimg(htmlpath, basesixfour_stripped, inpath)
     elif i > 2:  #too many options used on the CL
@@ -81,19 +89,21 @@ MIT License
 -----------------------------------
 
 DESCRIPTION
-A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, CSS, or SASS files.
+A base64 encoder for images that optionally embeds encoded image data in HTML, Markdown, CSS, LESS, or SASS files.
 
 USAGE
-  sixfour [-cios] [--css=,--image=,--html=,--sass=] <arg>
+  sixfour [-cilos] [--css=,--image=,--html=,--less=,--sass=] <arg>
 
 SOURCE FILE EMBED TAG
   CSS, HTML, and Markdown: {{64}}
+  LESS: @sixfour
   SASS: $sixfour
 
 OPTIONS
   -c --css=     - embed in CSS file <filepath>
   -h --help     - view this help documentation
   -i --image=   - image <filepath>
+  -l --less=    - embed in LESS file <filepath>
   -o --html=    - embed in HTML or MD file <filepath>
   -s --sass=    - embed in SASS file <filepath>
   -v --version  - show application version
@@ -101,6 +111,7 @@ OPTIONS
 EXAMPLES
   sixfour -i "img/image.png" -o "index.html"
   sixfour -i "img/image.png" --css="css/main.css"
+  sixfour -i "img/image.png" --less="less/main.less"
   sixfour -i "img/image.png" --sass="sass/main.scss"
 
 NOTES
@@ -113,8 +124,8 @@ Use the embed tag {{64}} in your HTML or Markdown file at the location where you
 -->> Embed a base64 encoded image in a CSS element <<--
 Use the embed tag {{64}} in your CSS file at the location where you would like to embed your base64 data URI.  Include the recipient CSS file path with the -c or --css flag in your command.  Include the image path with the -i or --image flag. The image MIME type is automatically detected from the filename extension.
 
--->> Embed a base64 encoded image in a SASS element <<--
-When you use the -s or --sass flags with a path to the sass file, sixfour will embed the base64 data URI at the site of the sass variable $sixfour instead of at the typical tag {{64}}.  It is not necessary to define this variable in your sass file and it does not obey standard sass variable scope rules.  Simply insert it in the location(s) where you intend to embed the data URI.  Use the -c or --css flags if you would prefer to use the {{64}} tag in sass files.
+-->> Embed a base64 encoded image in a LESS or SASS element <<--
+For LESS files, use the -l or --less flag with the filepath to the LESS file.  For SASS files, use the -s or --sass flag with the filepath to the SASS file.  sixfour will embed the base64 data URI at the site of the less variable, @sixfour, or SASS variable, $sixfour, respectively.   It is not necessary to define the variable in your LESS or SASS files.  Simply insert it at the location(s) where you intend to embed the data URI and run the appropriate sixfour command.  Use the -c or --css flags if you would prefer to use the {{64}} tag is SASS or LESS files.
 
 SOURCE REPOSITORY
 http://github.com/chrissimpkins/six-four
@@ -125,6 +136,7 @@ http://chrissimpkins.github.io/six-four/
     """
     print(helpstring)
 
+# HTML + Markdown replacements
 def insertimg(htmlpath, base64string, imgpath):
     htmlstring = ""
     try:
@@ -141,6 +153,7 @@ def insertimg(htmlpath, base64string, imgpath):
         print((str(e)))
         sys.exit(1)
 
+# CSS replacements
 def insertimg_css(csspath, base64string, imgpath):
     cssstring = ""
     try:
@@ -157,6 +170,7 @@ def insertimg_css(csspath, base64string, imgpath):
         print((str(e)))
         sys.exit(1)
 
+# SASS replacements
 def insertimg_sass(sasspath, base64string, imgpath):
     sassstring = ""
     try:
@@ -171,6 +185,23 @@ def insertimg_sass(sasspath, base64string, imgpath):
     except Exception as e:
         print("Unable to embed your base64 encoded image in the SASS file")
         print((str(e)))
+        sys.exit(1)
+
+# LESS replacements
+def insertimg_less(lesspath, base64string, imgpath):
+    lessstring = ""
+    try:
+        with open(lesspath, "r+") as f:
+            lessstring = f.read()
+            f.seek(0)
+            the_b64 = makecsstag(base64string, imgpath)
+            new_lessstring = lessstring.replace(LESS_REPLACE_TAG, the_b64)
+            f.write(new_lessstring)
+            f.close()
+            print("Insertion completed successfully")
+    except Exception as e:
+        print("Unable to embed your base64 encoded image in the LESS file")
+        print(str(e))
         sys.exit(1)
 
 def makeimgtag(base64string, imagepath):
