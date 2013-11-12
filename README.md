@@ -9,7 +9,7 @@ A base64 encoder for images that optionally embeds encoded image data in HTML, M
 ## Dependencies
 Requires Python 2 or 3
 
-Tested in versions 2.7.5 and 3.3.2
+Tested in versions 2.7.6 and 3.3.2
 
 ## Install
 
@@ -215,6 +215,8 @@ sixfour --help
 MIT license
 
 ## Changelog
+
+**v1.3.1** - updated documentation + updated tests for Python v 2.7.6
 
 **v1.3.0** - added LESS file embed support
 
