@@ -5,7 +5,7 @@ import os
 import getopt
 
 # Constants
-VERSION = "1.3.0"
+VERSION = "1.3.1"
 REPLACE_TAG = "{{64}}"
 SASS_REPLACE_TAG = "$sixfour"
 LESS_REPLACE_TAG = "@sixfour"
