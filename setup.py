@@ -2,7 +2,7 @@
 
 from distutils.core import setup
 setup(name='sixfour',
-      version='1.3.0',
+      version='1.3.1',
       description='base64 Image Encoder and Embedder',
       author='Christopher Simpkins',
       author_email='chris@zerolabs.net',
@@ -18,7 +18,7 @@ setup(name='sixfour',
 
         `Six-Four Documentation <http://chrissimpkins.github.io/six-four/>`_
 
-        Tested in Python v2.7.5 & v3.3.2""",
+        Tested in Python v2.7.6 & v3.3.2""",
       classifiers= [
       	'Development Status :: 5 - Production/Stable',
 		'Environment :: MacOS X',
