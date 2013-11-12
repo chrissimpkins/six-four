@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: sixfour
-Version: 1.3.0
+Version: 1.3.1
 Author: Christopher Simpkins
 Author-email: chris at zerolabs net
 Maintainer: Christopher Simpkins
@@ -13,7 +13,7 @@ Description: Six-Four is a base64 encoder for images that allows you to embed an
 
         `Six-Four Documentation <http://chrissimpkins.github.io/six-four/>`_
 
-        Tested in Python v2.7.5 & v3.3.2
+        Tested in Python v2.7.6 & v3.3.2
 Keywords: image,base64,web,internet,CSS,HTML,Markdown,sass,scss
 Platform: any
 Classifier: Development Status :: 5 - Production/Stable
