@@ -216,6 +216,8 @@ MIT license
 
 ## Changelog
 
+**v.1.3.3** - added Python wheel to the release
+
 **v1.3.1** - updated documentation + updated tests for Python v 2.7.6
 
 **v1.3.0** - added LESS file embed support
