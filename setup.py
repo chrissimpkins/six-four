@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup
+
 setup(name='sixfour',
-      version='1.3.2',
+      version='1.3.3',
       description='base64 Image Encoder and Embedder',
       author='Christopher Simpkins',
       author_email='chris@zerolabs.net',
