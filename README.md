@@ -40,7 +40,7 @@ Include the `-i` flag with the input image file path and the raw base64 encoded 
 ``` bash
 sixfour -i 'path/to/image.png'
 ```
-You can use this method to pipe the raw base64 encoded image data to any other application on *nix platforms:
+You can use this method to pipe the raw base64 encoded image data to any other application:
 ``` bash
 sixfour -i 'path/to/image.png' | coolimageapp --process-it
 ```
